@@ -6,7 +6,7 @@
 /*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 14:04:52 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/08/06 03:59:17 by yuendo           ###   ########.fr       */
+/*   Updated: 2023/08/19 15:01:24 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,20 @@
 
 # define TILE_SIZE 32 // 一つのタイルの大きさ
 
-typedef struct s_img{
-    void *img;
+// typedef struct s_img{
+//     void *img;
+//     int x;
+//     int y;
+// }               t_img;
+
+typedef struct s_point{
     int x;
     int y;
+}               t_point;
+
+typedef struct s_img{
+    void *img;
+    t_point cordinate;
 }               t_img;
 
 typedef struct s_map{
@@ -91,6 +101,7 @@ void free_2d_array(char **str);
 void is_valid_map_shape(char **map);
 void is_map_walled(char **map);
 void is_valid_map_elements(char **map);
+void is_game_playable(char **map);
 int main(int argc, char *argv[]);
 void get_game_imgs(t_data *game_data);
 int key_hook(int keycode, t_data *game_data);

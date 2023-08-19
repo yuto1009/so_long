@@ -6,7 +6,7 @@
 /*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 13:44:52 by yuendo            #+#    #+#             */
-/*   Updated: 2023/08/19 13:47:49 by yuendo           ###   ########.fr       */
+/*   Updated: 2023/08/19 15:07:02 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 
 void is_game_playable(char **map)
 {
-    
+    t_point start;
+    t_point end;
 }

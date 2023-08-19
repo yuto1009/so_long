@@ -6,7 +6,7 @@
 /*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 17:52:09 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/08/06 03:43:32 by yuendo           ###   ########.fr       */
+/*   Updated: 2023/08/19 15:09:22 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,8 @@ static t_img get_img(t_data *game_data, char *path)
 {
     t_img element;
 
-    element.img = mlx_xpm_file_to_image(game_data->mlx, path, &element.x, &element.y);
+    // element.img = mlx_xpm_file_to_image(game_data->mlx, path, &element.x, &element.y);   // 
+    element.img = mlx_xpm_file_to_image(game_data->mlx, path, &element.cordinate.x, &element.cordinate.y);  
     return (element);
 }
 
@@ -131,5 +132,4 @@ void get_map(char *map_path, t_data *game_data)
     game_data->map_width =  ft_strlen(map[0]);// マップの横幅を構造体に格納
     game_data->map_height = get_map_len(map); // マップの縦幅を構造体に格納
     game_data->coin_num = get_coin_num(map);  // コインの数を構造体に格納
-    // get_game_imgs(game_data);    // マップの画像を構造体に格納
 }
