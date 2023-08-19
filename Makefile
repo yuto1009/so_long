@@ -17,6 +17,7 @@ SRCS = so_long.c \
 		is_valid_map_elements.c \
 		render_map.c \
 		process_keyboard_input.c \
+		is_game_playable.c \
 		get_next_line/get_next_line.c \
 		get_next_line/get_next_line_utils.c \
 
