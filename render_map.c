@@ -6,14 +6,13 @@
 /*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 19:48:30 by yuendo            #+#    #+#             */
-/*   Updated: 2023/08/06 03:40:41 by yuendo           ###   ########.fr       */
+/*   Updated: 2023/08/19 13:25:10 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 static void render_elements(t_data *game_data, int col, int row)
-
 {
     if (game_data->map.map[col][row] == WALL)
         mlx_put_image_to_window(game_data->mlx, game_data->win, game_data->wall.img, row * game_data->wall.x, col * game_data->wall.y);

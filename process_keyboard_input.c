@@ -6,7 +6,7 @@
 /*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 23:55:32 by yuendo            #+#    #+#             */
-/*   Updated: 2023/08/06 03:41:08 by yuendo           ###   ########.fr       */
+/*   Updated: 2023/08/19 13:24:24 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,6 @@ void move_player(t_data *game_data, int next_x, int next_y)
         {
 			game_data->coin_num--;
         }
-		// if(game_data->map.map[last_x][last_y] == EXIT)		
-        // 	game_data->map.map[last_x][last_y] = EXIT;
-		// else
- 	    //    game_data->map.map[last_x][last_y] = EMPTY;
         game_data->map.map[last_x][last_y] = EMPTY;
         game_data->map.map[next_x][next_y] = PLAYER;	
         game_data->map.player_x = next_x;
@@ -51,22 +47,11 @@ void move_player(t_data *game_data, int next_x, int next_y)
 
 int key_hook(int keycode, t_data *game_data)
 {
-	// if(game_data) 
-	// ;
-    // printf("%d\n",keycode);
 	int player_nowx;
 	int player_nowy;
 
 	player_nowx = game_data->map.player_x;
 	player_nowy = game_data->map.player_y;
-	// if(keycode == W)
-	// 	move_player(game_data,player_nowx,player_nowy-1);
-	// if(keycode == A)
-	// 	move_player(game_data,player_nowx-1,player_nowy);
-	// if(keycode == S)
-	// 	move_player(game_data,player_nowx,player_nowy+1);
-	// if(keycode == D)
-	// 	move_player(game_data,player_nowx+1,player_nowy);
     if(keycode == W)
 	    move_player(game_data,player_nowx-1,player_nowy);
     if(keycode == A)
