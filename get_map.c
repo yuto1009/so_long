@@ -6,7 +6,7 @@
 /*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 17:52:09 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/08/19 15:09:22 by yuendo           ###   ########.fr       */
+/*   Updated: 2023/08/19 17:27:20 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,4 +132,5 @@ void get_map(char *map_path, t_data *game_data)
     game_data->map_width =  ft_strlen(map[0]);// マップの横幅を構造体に格納
     game_data->map_height = get_map_len(map); // マップの縦幅を構造体に格納
     game_data->coin_num = get_coin_num(map);  // コインの数を構造体に格納
+    is_game_playable(game_data);
 }

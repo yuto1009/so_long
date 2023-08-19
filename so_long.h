@@ -6,7 +6,7 @@
 /*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 14:04:52 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/08/19 15:01:24 by yuendo           ###   ########.fr       */
+/*   Updated: 2023/08/19 17:48:19 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@
 #define EXIT_PATH "./textures/exit.xpm"
 #define EMPTY_PATH "./textures/empty.xpm"
 #define DAMAGE_PATH "./textures/damage.xpm"
+
+# define NEIGHBORS 4
 
 # define TILE_SIZE 32 // 一つのタイルの大きさ
 
@@ -101,7 +103,7 @@ void free_2d_array(char **str);
 void is_valid_map_shape(char **map);
 void is_map_walled(char **map);
 void is_valid_map_elements(char **map);
-void is_game_playable(char **map);
+void is_game_playable(t_data *game_data);
 int main(int argc, char *argv[]);
 void get_game_imgs(t_data *game_data);
 int key_hook(int keycode, t_data *game_data);
