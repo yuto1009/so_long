@@ -6,7 +6,7 @@
 /*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 17:11:49 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/08/02 20:13:33 by yutoendo         ###   ########.fr       */
+/*   Updated: 2023/08/20 15:09:18 by yutoendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static bool is_map_vertically_walled(char **map)
 {
-    // この関数ではマップの上下が壁で囲まれているか確認
     size_t wall_len;
     size_t map_len;
     size_t i;
@@ -44,7 +43,6 @@ static bool is_map_vertically_walled(char **map)
 
 static bool is_map_horizontally_walled(char **map)
 {
-    // この関数ではマップの左右が壁で囲まれているか確認
     size_t wall_len;
     size_t map_len;
     size_t i;
@@ -64,8 +62,6 @@ static bool is_map_horizontally_walled(char **map)
 }
 void is_map_walled(char **map)
 {
-    // この関数ではマップが壁に囲まれているか確認
-    // 囲われていなかったらエラーを返し、イグジット
     if (is_map_vertically_walled(map) == false || is_map_horizontally_walled(map) == false)
     {
         free_2d_array(map);
