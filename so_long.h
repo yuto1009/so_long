@@ -6,7 +6,7 @@
 /*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 14:04:52 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/08/23 19:25:47 by yuendo           ###   ########.fr       */
+/*   Updated: 2023/08/23 19:41:40 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 #include <string.h>    // strerror
 #include <stdbool.h>    // boolean  true/false を使えるようにする
 
-#include "libft/libft.h"    // バリバリ使ってます
-#include "get_next_line/get_next_line.h"    // ファイルからマップ情報を抜き出す際に使用
+#include "libft/libft.h"
+#include "get_next_line/get_next_line.h"    
 #include "ft_printf/ft_printf.h"   
 
 # define CORRECT_ARGC 2 // 標準入力から受け取る引数の数
