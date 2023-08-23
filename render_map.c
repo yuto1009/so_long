@@ -6,7 +6,7 @@
 /*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 19:48:30 by yuendo            #+#    #+#             */
-/*   Updated: 2023/08/23 17:58:34 by yuendo           ###   ########.fr       */
+/*   Updated: 2023/08/23 19:32:23 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,5 @@ void render_map(t_data *game_data)
         }
         col++;
     }
-    // mlx_string_put(game_data->mlx, game_data->win, 10, 10, MOVEMENT_COLOR, "Coin:");
     render_movements_count(game_data);
 }
