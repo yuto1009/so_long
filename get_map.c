@@ -6,7 +6,7 @@
 /*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 17:52:09 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/08/23 17:29:56 by yuendo           ###   ########.fr       */
+/*   Updated: 2023/08/23 19:25:34 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ void get_map(char *map_path, t_data *game_data)
     map = read_map(map_path);   
     if (map == NULL)   
     {   
-        perror("Error\nMalloc Error\n");
+        ft_printf("Error\nMalloc Error\n");
         exit(EXIT_FAILURE);
     }
     is_valid_map(map); 

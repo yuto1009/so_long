@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_map_walled.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 17:11:49 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/08/20 15:09:18 by yutoendo         ###   ########.fr       */
+/*   Updated: 2023/08/23 19:24:22 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void is_map_walled(char **map)
     if (is_map_vertically_walled(map) == false || is_map_horizontally_walled(map) == false)
     {
         free_2d_array(map);
-        perror("Error\nMap is not walled\n");
+        ft_printf("Error\nMap is not walled\n");
         exit(EXIT_FAILURE);
     }
 }

@@ -6,7 +6,7 @@
 /*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 14:04:52 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/08/23 17:25:02 by yuendo           ###   ########.fr       */
+/*   Updated: 2023/08/23 19:25:47 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include <mlx.h>
 #include <fcntl.h>    //open
 #include <unistd.h>    //close, read, write
-#include <stdio.h>    // perror
 #include <stdlib.h>    // malloc, free, exit
 #include <string.h>    // strerror
 #include <stdbool.h>    // boolean  true/false を使えるようにする
@@ -38,6 +37,7 @@
 # define D 2
 # define MOVEMENT_COLOR 0x00FFFFFF
 # define MOVEMENTS "Moves: "
+# define UNIQUE 1
 
 # define WALL '1'
 # define COLLECTIBLE 'C'
@@ -74,14 +74,14 @@ typedef struct s_map{
 }               t_map;
 
 typedef struct	s_data {
-	void *mlx;  // 一つのマップにつき一つ必要、マップの情報をmlxライブラリに行き来させるのに使用
-    void *win;  // ウィンドウの情報 フレームの大きさとか閉じたか？とか（多分）
-    int map_width;  // ウィンドウの横幅
-    int map_height; // ウィンドウの縦幅
+	void *mlx;  
+    void *win;  
+    int map_width;  
+    int map_height; 
     int coin_num;
     int move_count;
-    t_map map;  // マップの情報を格納する構造体
-    t_img player;  // 画像の情報を格納する構造体
+    t_map map;  
+    t_img player;  
     t_img collectible;
     t_img wall;
     t_img empty;

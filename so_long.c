@@ -6,16 +6,11 @@
 /*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 14:17:51 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/08/23 16:42:24 by yuendo           ###   ########.fr       */
+/*   Updated: 2023/08/23 19:26:44 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-__attribute__((destructor)) // leakがないかチェック
-static void destructor() {
-    system("leaks -q a.out");
-}
 
 int	closes(t_data *game_data)
 {
@@ -31,7 +26,7 @@ int main(int argc, char *argv[])
     game_data = (t_data *)ft_calloc(1, sizeof(t_data));
     if(game_data == NULL)
     {
-        perror("Error\nMalloc Error\n");
+        ft_printf("Error\nMalloc Error\n");
         exit(EXIT_FAILURE);
     }
     is_valid_input(argc, argv); 
