@@ -6,7 +6,7 @@
 /*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 19:48:30 by yuendo            #+#    #+#             */
-/*   Updated: 2023/08/19 14:52:56 by yuendo           ###   ########.fr       */
+/*   Updated: 2023/08/23 17:58:34 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,27 @@ static void render_elements(t_data *game_data, int col, int row)
         mlx_put_image_to_window(game_data->mlx, game_data->win, game_data->damage.img, row * game_data->damage.cordinate.x, col * game_data->damage.cordinate.y);
 }
 
+static void render_movements_count(t_data *game_data)
+{
+    char *move_num_str;
+    char *move_str;
+
+    move_num_str = ft_itoa(game_data->move_count);
+    if (move_num_str == NULL)
+    {
+        ft_printf("Error\nMalloc Error\n");
+    }
+    move_str = ft_strjoin(MOVEMENTS, move_num_str);
+    if (move_str == NULL)
+    {
+        ft_printf("Error\nMalloc Error\n");
+    }
+    mlx_string_put(game_data->mlx, game_data->win, 10, 10, MOVEMENT_COLOR, move_str);
+    ft_printf("%s\n", move_str);
+    free(move_num_str);
+    free(move_str);
+}
+
 void render_map(t_data *game_data)
 {
     int col;
@@ -48,4 +69,6 @@ void render_map(t_data *game_data)
         }
         col++;
     }
+    // mlx_string_put(game_data->mlx, game_data->win, 10, 10, MOVEMENT_COLOR, "Coin:");
+    render_movements_count(game_data);
 }

@@ -6,7 +6,7 @@
 /*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 14:17:51 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/08/23 14:49:57 by yuendo           ###   ########.fr       */
+/*   Updated: 2023/08/23 16:42:24 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,11 @@ static void destructor() {
     system("leaks -q a.out");
 }
 
-int	closes(int keycode, t_data *game_data)
+int	closes(t_data *game_data)
 {
-    if(keycode)
-    ;
 	mlx_destroy_window(game_data->mlx, game_data->win);
+    exit(EXIT_SUCCESS);
 	return (0);
-    
 }
 
 int main(int argc, char *argv[])
@@ -52,7 +50,6 @@ int main(int argc, char *argv[])
     render_map(game_data);
     mlx_key_hook(game_data->win, key_hook, game_data);
     mlx_hook(game_data->win, DELETE_EVENT, DELETE_MASK, closes, game_data);
-    
 	mlx_loop(game_data->mlx);
     return 0;
 }

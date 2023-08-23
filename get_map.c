@@ -6,7 +6,7 @@
 /*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 17:52:09 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/08/23 12:32:43 by yuendo           ###   ########.fr       */
+/*   Updated: 2023/08/23 17:29:56 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,8 +128,10 @@ void get_map(char *map_path, t_data *game_data)
     }
     is_valid_map(map); 
     game_data->map.map = map;   
-    game_data->map_width =  ft_strlen(map[0]);
+    game_data->map_width =  ft_strlen(map[0]);  // create set_map function?
     game_data->map_height = get_map_len(map); 
     game_data->coin_num = get_coin_num(map);  
+    game_data->move_count = 0;
+    
     is_game_playable(game_data);
 }

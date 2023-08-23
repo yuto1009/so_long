@@ -6,7 +6,7 @@
 /*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 17:13:46 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/08/19 13:28:19 by yuendo           ###   ########.fr       */
+/*   Updated: 2023/08/23 16:11:31 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void is_valid_map_shape(char **map)
         if (ft_strlen(map[i]) != first_line_len)
         {   
             free_2d_array(map);
-            perror("Error\nMap width is invalid\n");
+            ft_printf("Error\nMap width is invalid\n");
             exit(EXIT_FAILURE);
         }
         i++;

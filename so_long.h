@@ -6,7 +6,7 @@
 /*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 14:04:52 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/08/23 14:50:23 by yuendo           ###   ########.fr       */
+/*   Updated: 2023/08/23 17:25:02 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@
 # define A 0
 # define S 1
 # define D 2
+# define MOVEMENT_COLOR 0x00FFFFFF
+# define MOVEMENTS "Moves: "
 
 # define WALL '1'
 # define COLLECTIBLE 'C'
@@ -77,6 +79,7 @@ typedef struct	s_data {
     int map_width;  // ウィンドウの横幅
     int map_height; // ウィンドウの縦幅
     int coin_num;
+    int move_count;
     t_map map;  // マップの情報を格納する構造体
     t_img player;  // 画像の情報を格納する構造体
     t_img collectible;
