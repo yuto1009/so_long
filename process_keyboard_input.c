@@ -6,7 +6,7 @@
 /*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 23:55:32 by yuendo            #+#    #+#             */
-/*   Updated: 2023/08/19 13:24:24 by yuendo           ###   ########.fr       */
+/*   Updated: 2023/08/23 13:27:59 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int key_hook(int keycode, t_data *game_data)
 	    move_player(game_data,player_nowx+1,player_nowy);
     if(keycode == D)
 	    move_player(game_data,player_nowx,player_nowy+1);
-	
+	if(keycode == ESC)  // これでいい？
+        exit_game(game_data);
 	return 0;
 }

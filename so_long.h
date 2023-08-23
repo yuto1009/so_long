@@ -6,7 +6,7 @@
 /*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 14:04:52 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/08/19 17:48:19 by yuendo           ###   ########.fr       */
+/*   Updated: 2023/08/23 14:50:23 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,13 @@
 # define MAP_ARGC 1 // マップがあるはずの標準入力（二次元配列）のインデックス
 # define MAP_EXTENTION ".ber" // マップの拡張子
 # define INVALID_FD -1 // ファイルディスクリプタが不正な時の値
-# define DELETE_EVENT 33
+# define DELETE_EVENT 17
 # define DELETE_MASK 1L<<17
 # define ESC 53
 # define W 13
 # define A 0
 # define S 1
 # define D 2
-
 
 # define WALL '1'
 # define COLLECTIBLE 'C'
@@ -55,12 +54,6 @@
 # define NEIGHBORS 4
 
 # define TILE_SIZE 32 // 一つのタイルの大きさ
-
-// typedef struct s_img{
-//     void *img;
-//     int x;
-//     int y;
-// }               t_img;
 
 typedef struct s_point{
     int x;

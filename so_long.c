@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 14:17:51 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/08/12 12:53:50 by yutoendo         ###   ########.fr       */
+/*   Updated: 2023/08/23 14:49:57 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,19 @@ static void destructor() {
     system("leaks -q a.out");
 }
 
-int	closes(int keycode, t_data *vars)
+int	closes(int keycode, t_data *game_data)
 {
     if(keycode)
     ;
-	mlx_destroy_window(vars->mlx, vars->win);
+	mlx_destroy_window(game_data->mlx, game_data->win);
 	return (0);
+    
 }
 
 int main(int argc, char *argv[])
 {   
-    t_data *game_data;  
-    
+    t_data *game_data;
+
     game_data = (t_data *)ft_calloc(1, sizeof(t_data));
     if(game_data == NULL)
     {
@@ -44,7 +45,6 @@ int main(int argc, char *argv[])
     // free_2d_array(game_data->map);  // DEBUG
     // free(game_data);
     // return 0;
-    
     
     game_data->mlx = mlx_init();
     game_data->win = mlx_new_window(game_data->mlx, game_data->map_width * TILE_SIZE, game_data->map_height * TILE_SIZE, "so_long");

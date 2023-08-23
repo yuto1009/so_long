@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 17:52:09 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/08/20 14:31:05 by yutoendo         ###   ########.fr       */
+/*   Updated: 2023/08/23 12:32:43 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,15 @@ static char	*so_long_strjoin(char *s1, char *s2)
 	return (str_start);
 }
 
-static char **read_map(char *map_info)  // コード動くか確認していない（多分動かない） 骨格は合ってるハず
+static char **read_map(char *map_info)  
 {
-    int fd; // ファイルディスクリプタ
-    char *line; // get_next_line関数で読む1行
-    char *concat_lines;  // １行ずつ取り出したmap情報を保持する
+    int fd; 
+    char *line; 
+    char *concat_lines;  
     char **map;
 
     concat_lines = NULL;
-    fd = open(map_info, O_RDONLY); // ファイルを開ける
+    fd = open(map_info, O_RDONLY); 
     if (fd == INVALID_FD)
     {
         ft_printf("\x1b[31mError\nMap not found\n\x1b[0m");
@@ -53,16 +53,16 @@ static char **read_map(char *map_info)  // コード動くか確認していな�
     }
     while(1)
     {
-        line = get_next_line(fd);   // １行ずつ読んでいく
-        if (line == NULL || line[0] == '\n')    // 全行読み切ったかチェック
+        line = get_next_line(fd);   
+        if (line == NULL || line[0] == '\n')    
         {
             break;
-        }    // malloc失敗と終端の見分け方? ここなぞ
-        concat_lines = so_long_strjoin(concat_lines, line);  // 取り出した１行をそれまで読み取ったマップ情報にくっつける
+        }    
+        concat_lines = so_long_strjoin(concat_lines, line);  
         
-        if (concat_lines == NULL)    // strjoinのmalloc失敗時
+        if (concat_lines == NULL) 
         {   
-            free(line); // メモリーリーク対策
+            free(line); 
             ft_printf("\x1b[31mError\nMalloc Error\n\x1b[0m");
             exit(EXIT_FAILURE);
         }
@@ -72,14 +72,13 @@ static char **read_map(char *map_info)  // コード動くか確認していな�
     close(fd);  
     map =  ft_split(concat_lines, '\n');
     free(concat_lines);
-    return (map);  // ft_splitの返り値は二次元配列になる そしてft_splitはナル終端だ！？
+    return (map);  
 }
 
 static t_img get_img(t_data *game_data, char *path)
 {
     t_img element;
-
-    // element.img = mlx_xpm_file_to_image(game_data->mlx, path, &element.x, &element.y);   // 
+    
     element.img = mlx_xpm_file_to_image(game_data->mlx, path, &element.cordinate.x, &element.cordinate.y);  
     return (element);
 }
@@ -121,16 +120,16 @@ void get_map(char *map_path, t_data *game_data)
 {
     char **map;
 
-    map = read_map(map_path);   // ファイルからマップ情報を取り出す、使いやすい形に整形
-    if (map == NULL)    // ft_splitの中身でmalloc失敗時
+    map = read_map(map_path);   
+    if (map == NULL)   
     {   
         perror("Error\nMalloc Error\n");
         exit(EXIT_FAILURE);
     }
-    is_valid_map(map);  // マップがPDFの規定通りかチェック
-    game_data->map.map = map;   // マップ情報を構造体に格納
-    game_data->map_width =  ft_strlen(map[0]);// マップの横幅を構造体に格納
-    game_data->map_height = get_map_len(map); // マップの縦幅を構造体に格納
-    game_data->coin_num = get_coin_num(map);  // コインの数を構造体に格納
+    is_valid_map(map); 
+    game_data->map.map = map;   
+    game_data->map_width =  ft_strlen(map[0]);
+    game_data->map_height = get_map_len(map); 
+    game_data->coin_num = get_coin_num(map);  
     is_game_playable(game_data);
 }
