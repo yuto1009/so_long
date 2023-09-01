@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 14:04:52 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/08/23 19:41:40 by yuendo           ###   ########.fr       */
+/*   Updated: 2023/09/01 23:11:15 by yutoendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 # define SO_LONG_H
 
 #include <mlx.h>
-#include <fcntl.h>    //open
-#include <unistd.h>    //close, read, write
-#include <stdlib.h>    // malloc, free, exit
-#include <string.h>    // strerror
-#include <stdbool.h>    // boolean  true/false を使えるようにする
+#include <fcntl.h>   
+#include <unistd.h>    
+#include <stdlib.h>    
+#include <string.h>    
+#include <stdbool.h>    
 
 #include "libft/libft.h"
 #include "get_next_line/get_next_line.h"    
 #include "ft_printf/ft_printf.h"   
 
-# define CORRECT_ARGC 2 // 標準入力から受け取る引数の数
-# define MAP_ARGC 1 // マップがあるはずの標準入力（二次元配列）のインデックス
-# define MAP_EXTENTION ".ber" // マップの拡張子
-# define INVALID_FD -1 // ファイルディスクリプタが不正な時の値
+# define CORRECT_ARGC 2 
+# define MAP_ARGC 1 
+# define MAP_EXTENTION ".ber" 
+# define INVALID_FD -1 
 # define DELETE_EVENT 17
 # define DELETE_MASK 1L<<17
 # define ESC 53
@@ -55,7 +55,7 @@
 
 # define NEIGHBORS 4
 
-# define TILE_SIZE 32 // 一つのタイルの大きさ
+# define TILE_SIZE 32 
 
 typedef struct s_point{
     int x;

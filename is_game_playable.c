@@ -6,7 +6,7 @@
 /*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 13:44:52 by yuendo            #+#    #+#             */
-/*   Updated: 2023/08/20 15:07:50 by yutoendo         ###   ########.fr       */
+/*   Updated: 2023/09/01 22:38:21 by yutoendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,24 +22,19 @@ static t_point find_element_cordinates(t_data *game_data, char element)
     i = 0;
     j = 0;
     found = false;
-    while (i < game_data->map_height)
+    while (found == false && i < game_data->map_height)
     {
-        while (j < game_data->map_width)
+        j = 0;
+        while (found == false && j < game_data->map_width)
         {
             if (game_data->map.map[i][j] == element)
             {
                 cordinates.y = i;
                 cordinates.x = j;
                 found = true;
-                break;
             }
             j++;
         }
-        if (found == true)
-        {
-            break;
-        }
-        j = 0;
         i++;
     }
     return cordinates;
@@ -72,7 +67,7 @@ static bool is_goal_reachable(t_data *game_data, t_point current, t_point goal, 
             i++;
             continue;
         }
-        if(game_data->map.map[next_y][next_x] == WALL)
+        if (game_data->map.map[next_y][next_x] == WALL)
         {
             i++;
             continue;
