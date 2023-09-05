@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 17:52:09 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/08/23 19:25:34 by yuendo           ###   ########.fr       */
+/*   Updated: 2023/09/05 17:36:20 by yutoendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,33 +39,22 @@ static char	*so_long_strjoin(char *s1, char *s2)
 
 static char **read_map(char *map_info)  
 {
-    int fd; 
+    const int fd = open(map_info, O_RDONLY);
     char *line; 
     char *concat_lines;  
     char **map;
 
-    concat_lines = NULL;
-    fd = open(map_info, O_RDONLY); 
+    concat_lines = NULL; 
     if (fd == INVALID_FD)
-    {
-        ft_printf("\x1b[31mError\nMap not found\n\x1b[0m");
-        exit(EXIT_FAILURE);
-    }
+        error_exit(MAP_NOT_FOUND);
     while(1)
     {
         line = get_next_line(fd);   
         if (line == NULL || line[0] == '\n')    
-        {
-            break;
-        }    
+            break;   
         concat_lines = so_long_strjoin(concat_lines, line);  
-        
         if (concat_lines == NULL) 
-        {   
-            free(line); 
-            ft_printf("\x1b[31mError\nMalloc Error\n\x1b[0m");
-            exit(EXIT_FAILURE);
-        }
+            error_exit(MALLOC_ERROR);
         free(line);
     }
     free(line); 
@@ -90,31 +79,29 @@ void get_game_imgs(t_data *game_data)
     game_data->wall = get_img(game_data, BACKGROUND_PATH);
     game_data->exit = get_img(game_data, EXIT_PATH);
     game_data->empty = get_img(game_data, EMPTY_PATH);
-    game_data->damage = get_img(game_data, DAMAGE_PATH);
 }
 
-static int get_coin_num(char **map)
-{
-    int i;
-    int j;
-    int coin_num;
+// static int get_coin_num(char **map)
+// {
+//     int i;
+//     int j;
+//     int coin_num;
 
-    i = 0;
-    coin_num = 0;
-    while (map[i] != NULL)
-    {
-        j = 0;
-        while (map[i][j] != '\0')
-        {
-            if (map[i][j] == 'C')
-                coin_num++;
-            j++;
-        }
-        i++;
-    }
-    return (coin_num);
-}
-
+//     i = 0;
+//     coin_num = 0;
+//     while (map[i] != NULL)
+//     {
+//         j = 0;
+//         while (map[i][j] != '\0')
+//         {
+//             if (map[i][j] == COLLECTIBLE)
+//                 coin_num++;
+//             j++;
+//         }
+//         i++;
+//     }
+//     return (coin_num);
+// }
 
 void get_map(char *map_path, t_data *game_data)
 {
@@ -122,16 +109,12 @@ void get_map(char *map_path, t_data *game_data)
 
     map = read_map(map_path);   
     if (map == NULL)   
-    {   
-        ft_printf("Error\nMalloc Error\n");
-        exit(EXIT_FAILURE);
-    }
+        error_exit(EMPTY_MAP);
     is_valid_map(map); 
     game_data->map.map = map;   
     game_data->map_width =  ft_strlen(map[0]);  // create set_map function?
     game_data->map_height = get_map_len(map); 
-    game_data->coin_num = get_coin_num(map);  
+    game_data->coin_num = count_elements(map, COLLECTIBLE);  
     game_data->move_count = 0;
-    
     is_game_playable(game_data);
 }

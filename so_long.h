@@ -6,7 +6,7 @@
 /*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 14:04:52 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/09/01 23:11:15 by yutoendo         ###   ########.fr       */
+/*   Updated: 2023/09/05 17:33:14 by yutoendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@
 #include <mlx.h>
 #include <fcntl.h>   
 #include <unistd.h>    
-#include <stdlib.h>    
-#include <string.h>    
+#include <stdlib.h>         
 #include <stdbool.h>    
 
 #include "libft/libft.h"
@@ -35,7 +34,7 @@
 # define A 0
 # define S 1
 # define D 2
-# define MOVEMENT_COLOR 0x00FFFFFF
+# define MOVEMENT_COLOR 0x00FFFFFF  // Delete except bonus
 # define MOVEMENTS "Moves: "
 # define UNIQUE 1
 
@@ -44,18 +43,27 @@
 # define EXIT 'E'
 # define PLAYER 'P'
 # define EMPTY '0'
-# define DAMAGE 'D'
+# define VALID_ELEMENTS "01CEP"
 
 #define PLAYER_PATH "./textures/player.xpm"
 #define COINS_PATH "./textures/coins.xpm"
 #define BACKGROUND_PATH "./textures/background.xpm"
 #define EXIT_PATH "./textures/exit.xpm"
 #define EMPTY_PATH "./textures/empty.xpm"
-#define DAMAGE_PATH "./textures/damage.xpm"
 
 # define NEIGHBORS 4
 
-# define TILE_SIZE 32 
+# define TILE_SIZE 32
+
+// ERROR MESSAGES
+# define MALLOC_ERROR 1
+# define EMPTY_MAP 2
+# define INVALID_ARGS 3
+# define MAP_NOT_FOUND 4
+# define INVALID_ELEMENTS 5
+# define INVALID_MAP_SHAPE 6
+# define MAP_NOT_WALLED 7
+
 
 typedef struct s_point{
     int x;
@@ -86,16 +94,16 @@ typedef struct	s_data {
     t_img wall;
     t_img empty;
     t_img exit;
-    t_img damage;
     
 }				t_data;
 
+void error_exit(int error_num);
 void render_map(t_data *game_data);
 void is_valid_input(int argc, char *argv[]);
 void get_map(char *map_path, t_data *game_data);
 void is_valid_map(char **map);
+int count_elements(char **map, char c);
 size_t get_map_len(char **map);
-void free_2d_array(char **str);
 void is_valid_map_shape(char **map);
 void is_map_walled(char **map);
 void is_valid_map_elements(char **map);

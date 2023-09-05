@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 14:17:51 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/08/23 19:26:44 by yuendo           ###   ########.fr       */
+/*   Updated: 2023/09/05 17:32:13 by yutoendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ int main(int argc, char *argv[])
     game_data = (t_data *)ft_calloc(1, sizeof(t_data));
     if(game_data == NULL)
     {
-        ft_printf("Error\nMalloc Error\n");
-        exit(EXIT_FAILURE);
+        error_exit(MALLOC_ERROR);
     }
     is_valid_input(argc, argv); 
     get_map(argv[MAP_ARGC], game_data);

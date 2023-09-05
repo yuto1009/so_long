@@ -6,13 +6,13 @@
 /*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 16:44:55 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/05/24 22:13:18 by yutoendo         ###   ########.fr       */
+/*   Updated: 2023/09/05 16:21:47 by yutoendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strtrim(char const *s1, char const *set)
+const char	*ft_strtrim(char *s1, char *set)
 {
 	char	*str;
 	size_t	size;

@@ -6,88 +6,107 @@
 /*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 17:07:11 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/09/01 23:11:07 by yutoendo         ###   ########.fr       */
+/*   Updated: 2023/09/05 16:23:04 by yutoendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static bool is_element_on_map(char **map, char c)
-{
-    size_t map_len;
-    size_t i;
-    bool isin;
+// static bool is_element_on_map(char **map, char c)
+// {
+//     size_t map_len;
+//     size_t i;
+//     bool isin;
     
-    map_len = get_map_len(map);
+//     map_len = get_map_len(map);
+//     i = 0;
+//     isin = false;
+//     while (i < map_len)
+//     {
+//         if (ft_strchr(map[i], c) != NULL)
+//         {
+//             isin = true;
+//         }
+//         i++;
+//     }
+//     return (isin);
+// }
+
+static bool check_essential_elements(char **map)
+{
+    const size_t map_len = get_map_len(map);
+    size_t i;
+
     i = 0;
-    isin = false;
     while (i < map_len)
     {
-        if (ft_strchr(map[i], c) != NULL)
+        if (count_elements(map, COLLECTIBLE) < true || count_elements(map, EXIT) != true || 
+        count_elements(map, PLAYER) != true)
         {
-            isin = true;
+            return (false);
         }
         i++;
     }
-    return (isin);
+    return (true);
 }
 
-static void check_minimum_elements(char **map)
-{
-    size_t map_len;
-    size_t i;
-
-    map_len = get_map_len(map);
-    i = 0;
-    while (i < map_len - 0)
-    {
-        if ( is_element_on_map(map, COLLECTIBLE) == false || is_element_on_map(map, EXIT) == false || 
-        is_element_on_map(map, PLAYER) == false)
-        {
-            free_2d_array(map);
-            ft_printf("\x1b[31mError\nMap is missing elements\n\x1b[0m");
-            exit(EXIT_FAILURE);
-        }
-        i++;
-    }
-}
-
-static size_t count_unique_elements(char **map, char c)
-{
-    size_t map_len;
-    size_t i;
-    size_t j;
-    size_t count;
+// static size_t count_unique_elements(char **map, char c)
+// {
+//     size_t map_len;
+//     size_t i;
+//     size_t j;
+//     size_t count;
     
-    map_len = get_map_len(map);
+//     map_len = get_map_len(map);
+//     i = 0;
+//     count = 0;
+//     while (i < map_len)
+//     {
+//         j = 0;
+//         while(map[i][j] != '\0')
+//         {
+//             if (map[i][j] == c)
+//                 count++;
+//             j++;
+//         }
+//         i++;
+//     }
+//     return (count);
+// }
+
+// static void check_unique_elements(char **map)
+// {
+//     if (count_unique_elements(map, PLAYER) != UNIQUE || count_unique_elements(map, EXIT) != UNIQUE)
+//     {
+//         ft_printf("\x1b[31mError\nPlayer and Exit must be unique\n\x1b[0m");
+//         exit(EXIT_FAILURE);
+//     }
+// }
+
+static bool is_known_elements(char **map)
+{
+    const size_t map_len = get_map_len(map);
+    size_t i;
+
     i = 0;
-    count = 0;
     while (i < map_len)
     {
-        j = 0;
-        while(map[i][j] != '\0')
+        const char *trimmed = ft_strtrim(map[i], VALID_ELEMENTS);
+        if (ft_strlen(trimmed) != 0)
         {
-            if (map[i][j] == c)
-                count++;
-            j++;
+            free((void *)trimmed);
+            return (false);
         }
+        free((void *)trimmed);
         i++;
     }
-    return (count);
-}
-
-static void check_unique_elements(char **map)
-{
-    if (count_unique_elements(map, PLAYER) != UNIQUE || count_unique_elements(map, EXIT) != UNIQUE)
-    {
-        free_2d_array(map);
-        ft_printf("\x1b[31mError\nPlayer and Exit must be unique\n\x1b[0m");
-        exit(EXIT_FAILURE);
-    }
+    return true;
 }
 
 void is_valid_map_elements(char **map)
 {
-    check_minimum_elements(map);
-    check_unique_elements(map);
+    if (check_essential_elements(map) == false || is_known_elements(map) == false)
+    {
+        error_exit(INVALID_ELEMENTS);
+    }
 }
