@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 17:52:09 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/09/05 17:36:20 by yutoendo         ###   ########.fr       */
+/*   Updated: 2023/09/07 15:26:21 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,28 +81,6 @@ void get_game_imgs(t_data *game_data)
     game_data->empty = get_img(game_data, EMPTY_PATH);
 }
 
-// static int get_coin_num(char **map)
-// {
-//     int i;
-//     int j;
-//     int coin_num;
-
-//     i = 0;
-//     coin_num = 0;
-//     while (map[i] != NULL)
-//     {
-//         j = 0;
-//         while (map[i][j] != '\0')
-//         {
-//             if (map[i][j] == COLLECTIBLE)
-//                 coin_num++;
-//             j++;
-//         }
-//         i++;
-//     }
-//     return (coin_num);
-// }
-
 void get_map(char *map_path, t_data *game_data)
 {
     char **map;
@@ -112,7 +90,7 @@ void get_map(char *map_path, t_data *game_data)
         error_exit(EMPTY_MAP);
     is_valid_map(map); 
     game_data->map.map = map;   
-    game_data->map_width =  ft_strlen(map[0]);  // create set_map function?
+    game_data->map_width =  ft_strlen(map[0]); 
     game_data->map_height = get_map_len(map); 
     game_data->coin_num = count_elements(map, COLLECTIBLE);  
     game_data->move_count = 0;

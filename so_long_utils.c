@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 14:54:20 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/09/05 17:33:50 by yutoendo         ###   ########.fr       */
+/*   Updated: 2023/09/07 15:09:02 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,11 @@ size_t get_map_len(char **map)
 
 int count_elements(char **map, char c)
 {
-    size_t map_len;
+    const size_t map_len = get_map_len(map);
     size_t i;
     size_t j;
     int count;
     
-    map_len = get_map_len(map);
     i = 0;
     count = 0;
     while (i < map_len)
@@ -67,5 +66,7 @@ void error_exit(int error_num)
         ft_printf("\x1b[31mError\nMap width is invalid\n\x1b[0m");
     else if (error_num == MAP_NOT_WALLED)
         ft_printf("\x1b[31mError\nMap is not walled\n\x1b[0m");
+    else if (error_num == MAP_UNPLAYABLE)
+        ft_printf("\x1b[31mError\nMap is unplayable\n\x1b[0m");
     exit(EXIT_FAILURE);  
 }

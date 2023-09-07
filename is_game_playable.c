@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_game_playable.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 13:44:52 by yuendo            #+#    #+#             */
-/*   Updated: 2023/09/05 14:25:39 by yutoendo         ###   ########.fr       */
+/*   Updated: 2023/09/07 15:25:07 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,43 +40,33 @@ static t_point find_element_cordinates(t_data *game_data, char element)
     return cordinates;
 }
 
+static bool is_valid_move(t_data *game_data, t_point next, bool visited[game_data->map_height][game_data->map_width])
+{
+    if (next.y >= game_data->map_height || next.y <= 0 || next.x >= game_data->map_width || next.x <= 0)
+        return false;
+    if (visited[next.y][next.x] == true)
+        return false;
+    if (game_data->map.map[next.y][next.x] == WALL)
+        return false;
+    return true;
+}
 static bool is_goal_reachable(t_data *game_data, t_point current, t_point goal, bool visited[game_data->map_height][game_data->map_width])
 {
-    int delta_y[] = {0, 1, 0, -1};
-    int delta_x[] = {1, 0, -1, 0};
-    int next_y;
-    int next_x;
+    const int delta_y[] = {0, 1, 0, -1};
+    const int delta_x[] = {1, 0, -1, 0};
     int i;
 
     if (current.y == goal.y && current.x == goal.x )
-    {
         return true;
-    }
     i = 0;
     while (i < NEIGHBORS)
     {
-        next_x = current.x + delta_x[i];
-        next_y = current.y + delta_y[i];
-        if (next_y >= game_data->map_height || next_y <= 0 || next_x >= game_data->map_width || next_x <= 0)
+        const t_point next = {current.x + delta_x[i], current.y + delta_y[i]};
+        if (is_valid_move(game_data, next, visited) == true)
         {
-            i++;
-            continue;
-        }
-        if (visited[next_y][next_x] == true)
-        {
-            i++;
-            continue;
-        }
-        if (game_data->map.map[next_y][next_x] == WALL)
-        {
-            i++;
-            continue;
-        }
-        visited[next_y][next_x] = true;
-        t_point next = {next_x, next_y};
-        if (is_goal_reachable(game_data, next, goal, visited) == true)
-        { 
-            return true;
+            visited[next.y][next.x] = true;
+            if (is_goal_reachable(game_data, next, goal, visited) == true)
+                return true;
         }
         i++;
     }
@@ -94,7 +84,6 @@ void is_game_playable(t_data *game_data)
     ft_memset(visited, false, sizeof(visited));
     if (is_goal_reachable(game_data, current, goal, visited) == false) 
     {
-        ft_printf("\x1b[31mError\nMap is unplayable\n\x1b[0m");  
-        exit(EXIT_FAILURE);
+        error_exit(MAP_UNPLAYABLE);
     }
 }

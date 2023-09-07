@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 19:48:30 by yuendo            #+#    #+#             */
-/*   Updated: 2023/09/05 14:32:06 by yutoendo         ###   ########.fr       */
+/*   Updated: 2023/09/07 15:27:15 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,12 @@ static void render_movements_count(t_data *game_data)
     move_num_str = ft_itoa(game_data->move_count);
     if (move_num_str == NULL)
     {
-        ft_printf("\x1b[31mError\nMalloc Error\n\x1b[0m");
+        error_exit(MALLOC_ERROR);
     }
     move_str = ft_strjoin(MOVEMENTS, move_num_str);
     if (move_str == NULL)
     {
-        ft_printf("\x1b[31mError\nMalloc Error\n\x1b[0m");
+        error_exit(MALLOC_ERROR);
     }
     mlx_string_put(game_data->mlx, game_data->win, 10, 10, MOVEMENT_COLOR, move_str);
     ft_printf("%s\n", move_str);

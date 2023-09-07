@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 14:04:52 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/09/05 17:33:14 by yutoendo         ###   ########.fr       */
+/*   Updated: 2023/09/07 15:07:49 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@
 # define INVALID_ELEMENTS 5
 # define INVALID_MAP_SHAPE 6
 # define MAP_NOT_WALLED 7
+# define MAP_UNPLAYABLE 8
 
 
 typedef struct s_point{

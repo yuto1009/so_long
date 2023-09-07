@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 14:17:51 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/09/05 17:32:13 by yutoendo         ###   ########.fr       */
+/*   Updated: 2023/09/07 15:29:07 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	closes(t_data *game_data)
+static int closes(t_data *game_data)
 {
 	mlx_destroy_window(game_data->mlx, game_data->win);
     exit(EXIT_SUCCESS);
@@ -30,14 +30,6 @@ int main(int argc, char *argv[])
     }
     is_valid_input(argc, argv); 
     get_map(argv[MAP_ARGC], game_data);
-    
-    // ここら辺ではmlxにマップの情報を渡すコードを書くはず
-    // printf("最初の１行は壁の筈%s\n", game_data->map[0]);    // DEBUG
-    // printf("最後の１行も壁の筈%s\n", game_data->map[(get_map_len(game_data->map) -1)]);    // DEBUG
-    // free_2d_array(game_data->map);  // DEBUG
-    // free(game_data);
-    // return 0;
-    
     game_data->mlx = mlx_init();
     game_data->win = mlx_new_window(game_data->mlx, game_data->map_width * TILE_SIZE, game_data->map_height * TILE_SIZE, "so_long");
     get_game_imgs(game_data);
