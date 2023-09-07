@@ -6,7 +6,7 @@
 /*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 14:04:52 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/09/07 15:07:49 by yuendo           ###   ########.fr       */
+/*   Updated: 2023/09/07 18:14:30 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@
 #define EMPTY_PATH "./textures/empty.xpm"
 
 # define NEIGHBORS 4
+# define UNEXPLORED 'U'
 
 # define TILE_SIZE 32
 
