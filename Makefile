@@ -8,17 +8,17 @@ MLX_PATH = mlx/
 
 MLX_LIB = $(MLX_PATH)libmlx.a
 
-SRCS = so_long.c \
-		is_valid_input.c \
-		get_map.c \
-		is_valid_map.c \
-		is_valid_map_shape.c \
-		is_map_walled.c \
-		is_valid_map_elements.c \
-		render_map.c \
-		process_keyboard_input.c \
-		is_game_playable.c \
-		so_long_utils.c \
+SRCS = src/so_long.c \
+		src/is_valid_input.c \
+		src/load_map.c \
+		src/is_valid_map_shape.c \
+		src/is_map_walled.c \
+		src/is_valid_map_elements.c \
+		src/load_game_imgs.c \
+		src/render_map.c \
+		src/process_keyinput.c \
+		src/is_game_playable.c \
+		src/so_long_utils.c \
 		get_next_line/get_next_line.c \
 		get_next_line/get_next_line_utils.c \
 
