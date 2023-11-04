@@ -1,6 +1,6 @@
 # so_long
 
-![gif](https://github.com/yuto1009/solong/blob/main/image/so_long_play_video.gif)
+![gif](https://github.com/yuto1009/so_long/blob/main/so_long_play_movie.gif)
 
 ## Overview
 The so_long consists of a top-down game, which we code from scratch using the MiniLibx graphical library. 
