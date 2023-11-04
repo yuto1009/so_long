@@ -4,66 +4,44 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror -Imlx
 
-MLX_PATH = mlx/
-
-MLX_LIB = $(MLX_PATH)libmlx.a
-
-SRCS = so_long.c \
-		is_valid_input.c \
-		get_map.c \
-		is_valid_map.c \
-		is_valid_map_shape.c \
-		is_map_walled.c \
-		is_valid_map_elements.c \
-		render_map.c \
-		process_keyboard_input.c \
-		is_game_playable.c \
-		so_long_utils.c \
-		get_next_line/get_next_line.c \
-		get_next_line/get_next_line_utils.c \
-
+SRCS = src/get_map.c src/is_game_playable.c src/is_map_walled.c src/is_valid_input.c\
+		src/is_valid_map.c src/is_valid_map_elements.c src/is_valid_map_shape.c\
+  		src/process_keyboard_input.c src/render_map.c src/so_long.c src/so_long_utils.c\
+		get_next_line/get_next_line.c get_next_line/get_next_line_utils.c\
 
 OBJS = $(SRCS:.c=.o)
 
-LIBFT_PATH = ./libft
+LIBFTPRINTF_PATH = ./libftprintf
 
-LIBFT = $(LIBFT_PATH)/libft.a
+LIBFTPRINTF = $(LIBFTPRINTF_PATH)/libftprintf.a
 
-FT_PRINTF_PATH = ./ft_printf
+MLX_PATH = mlx/
 
-FT_PRINTF = $(FT_PRINTF_PATH)/libftprintf.a
+MLX = $(MLX_PATH)libmlx.a
 
-MLX_PATH = ./mlx
+all:	$(LIBFTPRINTF) $(MLX) $(NAME)
 
-MLX = $(MLX_PATH)/libmlx.a
-
-all:	$(LIBFT) $(FT_PRINTF) $(MLX) $(NAME)
-
-%.o : %.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-$(LIBFT):
-	$(MAKE) -C $(LIBFT_PATH)
-
-$(FT_PRINTF):
-	$(MAKE) -C $(FT_PRINTF_PATH)
+$(LIBFTPRINTF):
+	@$(MAKE) -C $(LIBFTPRINTF_PATH)
+	echo "Successfully compiled $(NAME)"
 
 $(MLX):
-	$(MAKE) -C $(MLX_PATH)
+	@$(MAKE) -C $(MLX_PATH)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT) $(FT_PRINTF) $(MLX) -Lmlx -lmlx -framework OpenGL -framework AppKit mlx/libmlx.a
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFTPRINTF) $(MLX) -Lmlx -lmlx -framework OpenGL -framework AppKit mlx/libmlx.a
+
+%.o : %.c
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
-	$(MAKE) -C $(LIBFT_PATH) clean
-	$(MAKE) -C $(FT_PRINTF_PATH) clean
-	$(MAKE) -C $(MLX_PATH) clean
+	@rm -f $(OBJS)
+	@$(MAKE) -C $(LIBFTPRINTF_PATH) clean
+	@$(MAKE) -C $(MLX_PATH) clean
 
 fclean: clean
-	rm -f $(NAME)
-	$(MAKE) -C $(LIBFT_PATH) fclean
-	$(MAKE) -C $(FT_PRINTF_PATH) fclean
+	@rm -f $(NAME)
+	@$(MAKE) -C $(LIBFTPRINTF_PATH) fclean
 
 re: fclean all
 

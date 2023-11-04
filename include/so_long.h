@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 14:04:52 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/09/07 18:14:30 by yuendo           ###   ########.fr       */
+/*   Updated: 2023/11/04 18:15:22 by yutoendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 #include <stdlib.h>         
 #include <stdbool.h>    
 
-#include "libft/libft.h"
-#include "get_next_line/get_next_line.h"    
-#include "ft_printf/ft_printf.h"   
+#include "../libftprintf/libft/libft.h"
+#include "../get_next_line/get_next_line.h"    
+#include "../libftprintf/ft_printf/ft_printf.h"   
 
 # define CORRECT_ARGC 2 
 # define MAP_ARGC 1 
@@ -34,7 +34,7 @@
 # define A 0
 # define S 1
 # define D 2
-# define MOVEMENT_COLOR 0x00FFFFFF  // Delete except bonus
+# define MOVEMENT_COLOR 0x00FFFFFF
 # define MOVEMENTS "Moves: "
 # define UNIQUE 1
 
