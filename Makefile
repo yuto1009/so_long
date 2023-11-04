@@ -23,7 +23,7 @@ all:	$(LIBFTPRINTF) $(MLX) $(NAME)
 
 $(LIBFTPRINTF):
 	@$(MAKE) -C $(LIBFTPRINTF_PATH)
-	echo "Successfully compiled $(NAME)"
+	@echo "Successfully compiled $(NAME)"
 
 $(MLX):
 	@$(MAKE) -C $(MLX_PATH)
