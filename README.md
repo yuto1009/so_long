@@ -1,4 +1,4 @@
-# so_long_42 <Work in Progress>
+# so_long
 This is a project at 42 programming school. It's the first graphical project I've done.
 The so_long consists of a top-down game, which we code from scratch using the MiniLibx graphical library. 
 It involves a series of validations from the map that is passed as argument, checks to prevent memoy leaks,
