@@ -4,10 +4,19 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror -Imlx
 
-SRCS = src/get_map.c src/is_game_playable.c src/is_map_walled.c src/is_valid_input.c\
-		src/is_valid_map.c src/is_valid_map_elements.c src/is_valid_map_shape.c\
-  		src/process_keyboard_input.c src/render_map.c src/so_long.c src/so_long_utils.c\
-		get_next_line/get_next_line.c get_next_line/get_next_line_utils.c\
+SRCS = src/so_long.c \
+		src/is_valid_input.c \
+		src/load_map.c \
+		src/is_valid_map_shape.c \
+		src/is_map_walled.c \
+		src/is_valid_map_elements.c \
+		src/load_game_imgs.c \
+		src/render_map.c \
+		src/process_keyinput.c \
+		src/is_game_playable.c \
+		src/so_long_utils.c \
+		get_next_line/get_next_line.c \
+		get_next_line/get_next_line_utils.c \
 
 OBJS = $(SRCS:.c=.o)
 

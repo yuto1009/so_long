@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 14:04:52 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/11/04 18:15:22 by yutoendo         ###   ########.fr       */
+/*   Updated: 2023/11/10 12:07:13 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 #include "../get_next_line/get_next_line.h"    
 #include "../libftprintf/ft_printf/ft_printf.h"   
 
+// ARGUMENTS & KEYCODES
 # define CORRECT_ARGC 2 
 # define MAP_ARGC 1 
 # define MAP_EXTENTION ".ber" 
@@ -38,6 +39,7 @@
 # define MOVEMENTS "Moves: "
 # define UNIQUE 1
 
+// MAP ELEMENTS
 # define WALL '1'
 # define COLLECTIBLE 'C'
 # define EXIT 'E'
@@ -45,6 +47,7 @@
 # define EMPTY '0'
 # define VALID_ELEMENTS "01CEP"
 
+// TEXTURES
 #define PLAYER_PATH "./textures/player.xpm"
 #define COINS_PATH "./textures/coins.xpm"
 #define BACKGROUND_PATH "./textures/background.xpm"
@@ -54,6 +57,7 @@
 # define NEIGHBORS 4
 # define UNEXPLORED 'U'
 
+// XPM IMAGE SIZE
 # define TILE_SIZE 32
 
 // ERROR MESSAGES
@@ -99,19 +103,33 @@ typedef struct	s_data {
     
 }				t_data;
 
-void error_exit(int error_num);
-void render_map(t_data *game_data);
-void is_valid_input(int argc, char *argv[]);
-void get_map(char *map_path, t_data *game_data);
-void is_valid_map(char **map);
-int count_elements(char **map, char c);
-size_t get_map_len(char **map);
-void is_valid_map_shape(char **map);
-void is_map_walled(char **map);
-void is_valid_map_elements(char **map);
-void is_game_playable(t_data *game_data);
-int main(int argc, char *argv[]);
-void get_game_imgs(t_data *game_data);
-int key_hook(int keycode, t_data *game_data);
-void move_player(t_data *game_data, int next_x, int next_y);
+// void error_exit(int error_num);
+// void render_map(t_data *game_data);
+// void is_valid_input(int argc, char *argv[]);
+// void get_map(char *map_path, t_data *game_data);
+// void is_valid_map(char **map);
+// int count_elements(char **map, char c);
+// size_t get_map_len(char **map);
+// void is_valid_map_shape(char **map);
+// void is_map_walled(char **map);
+// void is_valid_map_elements(char **map);
+// void is_game_playable(t_data *game_data);
+// int main(int argc, char *argv[]);
+// void get_game_imgs(t_data *game_data);
+// int key_hook(int keycode, t_data *game_data);
+// void move_player(t_data *game_data, int next_x, int next_y);
+void		error_exit(int error_num);
+void		is_valid_input(int argc, char *argv[]);
+void		load_map(char *map_path, t_data *game_data);
+void		is_valid_map_shape(char **map);
+void		is_map_walled(char **map);
+void		is_valid_map_elements(char **map);
+size_t		get_map_len(char **map);
+int			count_elements(char **map, char c);
+void		is_game_playable(t_data *game_data);
+t_point		find_unique_element_cordinates(t_data *game_data, char element);
+void		load_game_imgs(t_data *game_data);
+void		render_map(t_data *game_data);
+int			key_hook(int keycode, t_data *game_data);
+int	closes(t_data *game_data);
 #endif

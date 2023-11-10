@@ -3,36 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   is_valid_input.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/02 17:02:31 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/11/04 17:25:54 by yutoendo         ###   ########.fr       */
+/*   Created: 2023/09/09 17:42:35 by yuendo            #+#    #+#             */
+/*   Updated: 2023/11/10 12:03:15 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-static bool is_valid_input_argc(int argc)
+static bool	is_valid_input_argc(int argc)
 {
-    if (argc != CORRECT_ARGC){  
-        return false;
-    }
-    return true;
+	if (argc != CORRECT_ARGC)
+	{
+		return (false);
+	}
+	return (true);
 }
 
-static bool is_valid_file_extension(char *argv[])
-{   
-    if (ft_strnstr(argv[MAP_ARGC], MAP_EXTENTION, ft_strlen(argv[MAP_ARGC])) == NULL) 
-    {  
-        return false;
-    }
-    return true;
+static bool	is_valid_file_extension(char *argv[])
+{
+	if (ft_strnstr(argv[MAP_ARGC], MAP_EXTENTION,
+			ft_strlen(argv[MAP_ARGC])) == NULL)
+	{
+		return (false);
+	}
+	return (true);
 }
 
-void is_valid_input(int argc, char *argv[])
-{    
-    if (is_valid_input_argc(argc) == false || is_valid_file_extension(argv) == false)
-    {
-        error_exit(INVALID_ARGS);
-    }
+void	is_valid_input(int argc, char *argv[])
+{
+	if (is_valid_input_argc(argc) == false
+		|| is_valid_file_extension(argv) == false)
+	{
+		error_exit(INVALID_ARGS);
+	}
 }

@@ -3,117 +3,107 @@
 /*                                                        :::      ::::::::   */
 /*   is_game_playable.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/19 13:44:52 by yuendo            #+#    #+#             */
-/*   Updated: 2023/11/04 20:24:02 by yutoendo         ###   ########.fr       */
+/*   Created: 2023/09/09 18:16:13 by yuendo            #+#    #+#             */
+/*   Updated: 2023/11/10 12:03:02 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-static t_point find_unique_element_cordinates(t_data *game_data, char element)
+static bool	**init_visited(t_data *game_data)
 {
-    t_point cordinates;
-    int i;
-    int j;
-    bool found;
-    
-    i = 0;
-    found = false;
-    while (found == false && i < game_data->map_height)
-    {
-        j = 0;
-        while (found == false && j < game_data->map_width)
-        {
-            if (game_data->map.map[i][j] == element)
-            {
-                cordinates.y = i;
-                cordinates.x = j;
-                found = true;
-            }
-            j++;
-        }
-        i++;
-    }
-    return cordinates;
+	bool	**visited;
+	int		i;
+
+	visited = (bool **)ft_calloc(game_data->map_height, sizeof(bool *));
+	if (visited == NULL)
+		error_exit(MALLOC_ERROR);
+	i = 0;
+	while (i < game_data->map_height)
+	{
+		visited[i] = (bool *)ft_calloc(game_data->map_width, sizeof(bool));
+		if (visited[i] == NULL)
+			error_exit(MALLOC_ERROR);
+		i++;
+	}
+	return (visited);
 }
 
-static bool is_valid_move(t_data *game_data, t_point next, bool visited[game_data->map_height][game_data->map_width])
+static void	depth_first_search(t_data *game_data, t_point current,
+		bool **visited)
 {
-    if (next.y >= game_data->map_height || next.y <= 0 || next.x >= game_data->map_width || next.x <= 0)
-        return false;
-    if (visited[next.y][next.x] == true)
-        return false;
-    if (game_data->map.map[next.y][next.x] == WALL)
-        return false;
-    return true;
+	if (game_data->map.map[current.y][current.x] == WALL)
+		return ;
+	if (game_data->map.map[current.y][current.x] == EXIT)
+		return ;
+	if (visited[current.y][current.x] == true)
+	{
+		return ;
+	}
+	visited[current.y][current.x] = true;
+	depth_first_search(game_data, (t_point){current.x + 1, current.y}, visited);
+	depth_first_search(game_data, (t_point){current.x - 1, current.y}, visited);
+	depth_first_search(game_data, (t_point){current.x, current.y + 1}, visited);
+	depth_first_search(game_data, (t_point){current.x, current.y - 1}, visited);
+	return ;
 }
 
-static bool is_goal_reachable(t_data *game_data, t_point current, t_point goal, bool visited[game_data->map_height][game_data->map_width])
+static bool	is_able_to_exit(t_data *game_data,
+							bool **visited)
 {
-    const int delta_y[] = {0, 1, 0, -1};
-    const int delta_x[] = {1, 0, -1, 0};
-    int i;
+	t_point	exit;
 
-    if (current.y == goal.y && current.x == goal.x )
-        return true;
-    i = 0;
-    while (i < NEIGHBORS)
-    {
-        const t_point next = {current.x + delta_x[i], current.y + delta_y[i]};
-        if (is_valid_move(game_data, next, visited) == true)
-        {
-            visited[next.y][next.x] = true;
-            if (is_goal_reachable(game_data, next, goal, visited) == true)
-                return true;
-        }
-        i++;
-    }
-    return false;
+	exit = find_unique_element_cordinates(game_data, EXIT);
+	if (visited[exit.y][exit.x] == true
+		|| game_data->map.map[exit.y][exit.x] == EXIT)
+		return (true);
+	return (false);
 }
 
-static bool is_coin_collectable(t_data *game_data, bool visited[game_data->map_height][game_data->map_width])
+static bool	is_able_to_collect_all_coins(t_data *game_data,
+											bool **visited)
 {
-    int i;
-    int j;
-    int coins_left;
-    
-    i = 0;
-    coins_left = game_data->coin_num;
-    while (i < game_data->map_height)
-    {
-        j = 0;
-        while (j < game_data->map_width)
-        {
-            if (game_data->map.map[i][j] == COLLECTIBLE && visited[i][j] == true)
-            {
-                coins_left--;
-            }   
-            j++;
-        }
-        i++;
-    }
-    if (coins_left == 0)
-        return true;
-    return false;
+	int	i;
+	int	j;
+	int	coins_left;
+
+	i = 0;
+	j = 0;
+	coins_left = game_data->coin_num;
+	while (i < game_data->map_height)
+	{
+		j = 0;
+		while (j < game_data->map_width)
+		{
+			if (game_data->map.map[i][j] == COLLECTIBLE
+				&& visited[i][j] == true)
+				coins_left--;
+			j++;
+		}
+		i++;
+	}
+	if (coins_left == 0)
+		return (true);
+	return (false);
 }
 
-void is_game_playable(t_data *game_data)
+void	is_game_playable(t_data *game_data)
 {
-    t_point current;
-    t_point goal;
-    bool visited[game_data->map_height][game_data->map_width];
-    
-    current = find_unique_element_cordinates(game_data, PLAYER);
-    goal = find_unique_element_cordinates(game_data, EXIT);
-    ft_memset(visited, false, sizeof(visited));
-    if (is_goal_reachable(game_data, current, goal, visited) == false) 
-    {
-        error_exit(MAP_UNPLAYABLE);
-    }
-    if (is_coin_collectable(game_data, visited) == false)
-    {
-        error_exit(MAP_UNPLAYABLE);
-    }
+	t_point	current;
+	t_point	goal;
+	bool	**visited;
+	int		coins_left;
+
+	current = find_unique_element_cordinates(game_data, PLAYER);
+	goal = find_unique_element_cordinates(game_data, EXIT);
+	visited = init_visited(game_data);
+	coins_left = game_data->coin_num;
+	ft_memset(visited, false, sizeof(visited));
+	depth_first_search(game_data, current, visited);
+	if (is_able_to_exit(game_data, visited) == false)
+		error_exit(MAP_UNPLAYABLE);
+	if (is_able_to_collect_all_coins(game_data, visited) == false)
+		error_exit(MAP_UNPLAYABLE);
 }
