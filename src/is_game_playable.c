@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_game_playable.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 18:16:13 by yuendo            #+#    #+#             */
-/*   Updated: 2023/11/10 12:03:02 by yuendo           ###   ########.fr       */
+/*   Updated: 2023/11/16 22:15:29 by yutoendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,14 +92,10 @@ static bool	is_able_to_collect_all_coins(t_data *game_data,
 void	is_game_playable(t_data *game_data)
 {
 	t_point	current;
-	t_point	goal;
 	bool	**visited;
-	int		coins_left;
 
 	current = find_unique_element_cordinates(game_data, PLAYER);
-	goal = find_unique_element_cordinates(game_data, EXIT);
 	visited = init_visited(game_data);
-	coins_left = game_data->coin_num;
 	ft_memset(visited, false, sizeof(visited));
 	depth_first_search(game_data, current, visited);
 	if (is_able_to_exit(game_data, visited) == false)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 14:04:52 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/11/10 12:07:13 by yuendo           ###   ########.fr       */
+/*   Updated: 2023/11/16 22:11:04 by yutoendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,21 +103,7 @@ typedef struct	s_data {
     
 }				t_data;
 
-// void error_exit(int error_num);
-// void render_map(t_data *game_data);
-// void is_valid_input(int argc, char *argv[]);
-// void get_map(char *map_path, t_data *game_data);
-// void is_valid_map(char **map);
-// int count_elements(char **map, char c);
-// size_t get_map_len(char **map);
-// void is_valid_map_shape(char **map);
-// void is_map_walled(char **map);
-// void is_valid_map_elements(char **map);
-// void is_game_playable(t_data *game_data);
-// int main(int argc, char *argv[]);
-// void get_game_imgs(t_data *game_data);
-// int key_hook(int keycode, t_data *game_data);
-// void move_player(t_data *game_data, int next_x, int next_y);
+t_data*     initialize_game_data(void);
 void		error_exit(int error_num);
 void		is_valid_input(int argc, char *argv[]);
 void		load_map(char *map_path, t_data *game_data);

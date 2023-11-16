@@ -5,6 +5,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -Imlx
 
 SRCS = src/so_long.c \
+		src/initialize_game_data.c\
 		src/is_valid_input.c \
 		src/load_map.c \
 		src/is_valid_map_shape.c \

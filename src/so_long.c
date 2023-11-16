@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 17:23:18 by yuendo            #+#    #+#             */
-/*   Updated: 2023/11/10 12:03:40 by yuendo           ###   ########.fr       */
+/*   Updated: 2023/11/16 22:16:40 by yutoendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,7 @@ int	main(int argc, char *argv[])
 {
 	t_data	*game_data;
 
-	game_data = (t_data *)ft_calloc(1, sizeof(t_data));
-	if (game_data == NULL)
-	{
-		error_exit(MALLOC_ERROR);
-	}
+	game_data = initialize_game_data();
 	is_valid_input(argc, argv);
 	load_map(argv[MAP_ARGC], game_data);
 	game_data->mlx = mlx_init();
