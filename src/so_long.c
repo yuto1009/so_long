@@ -6,7 +6,7 @@
 /*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 17:23:18 by yuendo            #+#    #+#             */
-/*   Updated: 2023/11/16 22:16:40 by yutoendo         ###   ########.fr       */
+/*   Updated: 2023/11/16 22:48:53 by yutoendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	main(int argc, char *argv[])
 {
 	t_data	*game_data;
-
+	
 	game_data = initialize_game_data();
 	is_valid_input(argc, argv);
 	load_map(argv[MAP_ARGC], game_data);

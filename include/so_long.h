@@ -6,7 +6,7 @@
 /*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 14:04:52 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/11/16 22:11:04 by yutoendo         ###   ########.fr       */
+/*   Updated: 2023/11/16 22:48:12 by yutoendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 #include "../libftprintf/ft_printf/ft_printf.h"   
 
 // ARGUMENTS & KEYCODES
-# define CORRECT_ARGC 2 
+# define CORRECT_ARGC 1
 # define MAP_ARGC 1 
 # define MAP_EXTENTION ".ber" 
 # define INVALID_FD -1 
