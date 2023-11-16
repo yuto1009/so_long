@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 17:47:48 by yuendo            #+#    #+#             */
-/*   Updated: 2023/11/10 12:03:28 by yuendo           ###   ########.fr       */
+/*   Updated: 2023/11/16 22:37:26 by yutoendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,15 @@ static void	is_valid_map(char **map)
 	is_valid_map_elements(map);
 }
 
+static void store_map_info_in_game_data(t_data *game_data, char **map)
+{
+    game_data->map.map = map;
+    game_data->map_width = ft_strlen(map[0]);
+    game_data->map_height = get_map_len(map);
+    game_data->coin_num = count_elements(map, COLLECTIBLE);
+    game_data->move_count = 0;
+}
+
 void	load_map(char *map_path, t_data *game_data)
 {
 	char	**map;
@@ -79,10 +88,6 @@ void	load_map(char *map_path, t_data *game_data)
 	if (map == NULL)
 		error_exit(EMPTY_MAP);
 	is_valid_map(map);
-	game_data->map.map = map;
-	game_data->map_width = ft_strlen(map[0]);
-	game_data->map_height = get_map_len(map);
-	game_data->coin_num = count_elements(map, COLLECTIBLE);
-	game_data->move_count = 0;
+	store_map_info_in_game_data(game_data, map);
 	is_game_playable(game_data);
 }
